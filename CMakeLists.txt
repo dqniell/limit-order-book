@@ -7,6 +7,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(lob
     src/main.cpp
-    src/OrderBook.cpp
+    src/Orderbook.cpp
+    src/Parser.cpp
+)
+
+add_executable(benchmark
+    src/benchmark.cpp
+    src/Orderbook.cpp
     src/Parser.cpp
 )

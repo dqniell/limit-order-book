@@ -16,6 +16,7 @@ public:
     void cancelOrder(const Message& msg);
     void fillOrder(const Message& msg);
     void printBook(int depth = 5) const;
+    double spread() const;
 private:
     std::map<uint64_t, PriceLevel, std::greater<uint64_t>> bids;
     std::map<uint64_t, PriceLevel> asks;

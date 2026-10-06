@@ -66,12 +66,16 @@ void OrderBook::printBook(int depth) const {
     }
 
     if (!bids.empty() && !asks.empty()) {
-        double spread = (asks.begin()->first - bids.begin()->first) / 1'000'000'000.0;
-        std::cout << "Spread: $" << std::fixed << std::setprecision(3) << spread << "\n";
+        std::cout << "Spread: $" << std::fixed << std::setprecision(3) << spread() << "\n";
     }
 }
 
-void OrderBook::fillOrder(const Message& msg) { 
+double OrderBook::spread() const {
+    if (bids.empty() || asks.empty()) return 0.0;
+    return (asks.begin()->first - bids.begin()->first) / 1'000'000'000.0;
+}
+
+void OrderBook::fillOrder(const Message& msg) {
     if (order_index.find(msg.order_id) == order_index.end()) return;
 
     auto location = order_index[msg.order_id];
